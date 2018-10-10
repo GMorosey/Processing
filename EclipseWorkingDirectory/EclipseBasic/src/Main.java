@@ -9,20 +9,12 @@ public class Main extends PApplet {
 		PApplet.main("Main");
 	}
 	public void setup() {
-	background(255, 255, 255);
+	background(0, 0, 0);
 	}
 	public void draw() {
 		
 		formerX = mouseX;
 		formerY = mouseY;
-		
-	
-		/*if (changeyboi == 5) {
-			background(mouseX, mouseY, 155);
-			changeyboi = 0;
-		}
-		changeyboi++;*/
-		
 	}
 	public void settings() {
 	size(640,480);	
@@ -30,6 +22,9 @@ public class Main extends PApplet {
 	public void mouseDragged()
 	{
 		line(formerX, formerY, mouseX, mouseY);
+		//ellipse(formerX, formerY, mouseX, mouseY);
+		stroke(mouseX, mouseY, 155);
+		strokeWeight(4);
 		
 	}
 }
