@@ -16,15 +16,15 @@ public class Transform {
 	}
 	public PVector position = new PVector(0,0);
 	public PVector rotation = new PVector(0,0);
-	public PVector scale = new PVector(0,0);;
+	public PVector scale = new PVector(0,0);
 	public BoundingBox boundingBox = new BoundingBox(-1,1,-1,1);
-	public BoundingBox WorldBoundingBox() {
-		BoundingBox bBox = new BoundingBox();
-		bBox.left = position.x + boundingBox.left;
-		bBox.right = position.x + boundingBox.right;
-		bBox.top = position.y + boundingBox.top;
-		bBox.bottom = position.y + boundingBox.bottom;
-		return bBox;
+	public BoundingBox _BoundingBox() {
+		BoundingBox bb = new BoundingBox();
+		bb.left = this.position.x + boundingBox.left;
+		bb.right = this.position.x + boundingBox.right;
+		bb.top = this.position.y + boundingBox.top;
+		bb.bottom = this.position.y + boundingBox.bottom;
+		return bb;
 		
 	}
 }

@@ -3,8 +3,11 @@
  */
 package simple_platformer;
 
+import game_engine2D.BoundingBox;
+import game_engine2D.BoxCollider2D;
 import game_engine2D.Physics2D;
 import game_engine2D.Sprite;
+import game_engine2D.GameManager;
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -15,11 +18,13 @@ import processing.core.PVector;
  */
 public class Player extends Sprite {
 	float speed = 3f;
-	float gravity = 0.1f;
+	float gravity = 0.95f;
+	public PVector velocity = new PVector();
 	private PVector size = new PVector(12,12);
-	private PVector velocity = new PVector(0,0);
 	public int stroke = parent.color(120,120,255);
 	public int fill = parent.color(255);
+	public BoundingBox bb = new BoundingBox();
+	public BoxCollider2D boxCol = new BoxCollider2D(this);
 	
 	public Physics2D physics;
 	/**
@@ -38,13 +43,18 @@ public class Player extends Sprite {
 		 this.transform.position.y = parent.height / 2;
 		 physics = new Physics2D(this);
 		 physics.start();
+		 bb.fromSize(size);
+		 
 	 }
 	/* (non-Javadoc)
 	 * @see game_engine2D.Sprite#update()
 	 */
 	@Override
 	public void update() {
-		this.physics.checkCollison();
+		physics.update();
+		velocity.y += gravity;
+		this.transform.position.y += velocity.y;
+		boxCol.colCheck(other, _bb)
 	}
 	@Override
 	public void render(){
@@ -53,4 +63,5 @@ public class Player extends Sprite {
 		parent.rect(this.transform.position.x, this.transform.position.y, this.size.x, this.size.y);
 
 	}
+	
 }

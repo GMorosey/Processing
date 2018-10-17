@@ -13,6 +13,8 @@ public abstract class GameComponent extends ProcessingEntity {
 	public GameComponent(GameObject g) {
 		super(g.parent);
 		this.gameObject = g;
+		this.transform = new Transform();
+		this.gameObject.components.add(this);
 	}
 
 }

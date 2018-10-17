@@ -22,6 +22,7 @@ public class Launcher extends BaseLauncher{
             Tile platform = new Tile(parent, 50 + i * 55, parent.height-50,50, 20);
             platform.start();
             this.gameManager.addObject(platform);
+            this.gameManager.addBoundingBox(platform);
         }
     }
 	  public void UpdateAll(){

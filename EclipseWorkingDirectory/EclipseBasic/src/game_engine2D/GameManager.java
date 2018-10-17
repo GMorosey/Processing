@@ -8,9 +8,11 @@ public class GameManager {
     public GameManager(PApplet p){
         parent = p;
         gameObjects = new ArrayList<GameObject>();
+        boundingBoxes = new ArrayList<BoundingBox>();
     }
 
     private ArrayList<GameObject> gameObjects;
+    private ArrayList<BoundingBox> boundingBoxes;
 
 
     public void addObject(GameObject g){
@@ -18,6 +20,13 @@ public class GameManager {
     }
     public void removeObject(GameObject g){
         gameObjects.remove(gameObjects.lastIndexOf(g));
+    }
+    
+    public void addBoundingBox(GameObject b) {
+    	boundingBoxes.add(b.transform._BoundingBox());
+    }
+    public void removeBoundingBox(GameObject b) {
+    	boundingBoxes.remove(b.transform._BoundingBox());
     }
     public void StartAll() {
     	
@@ -33,6 +42,14 @@ public class GameManager {
             GameObject g = gameObjects.get(i);
             g.update();
             g.render();
+        }
+        
+        for(int i = 0; i < boundingBoxes.size(); i++ ) {
+        	BoundingBox bb = boundingBoxes.get(i);
+        	for(int j = 0; j < gameObjects.size(); j++) {
+        		GameObject g = gameObjects.get(j);
+        		
+        	}
         }
     }
 

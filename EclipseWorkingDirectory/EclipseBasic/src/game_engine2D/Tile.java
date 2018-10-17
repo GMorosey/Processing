@@ -6,6 +6,7 @@ public class Tile extends Sprite {
 	
 	int strokeColour;
 	int fillColour;
+	public BoundingBox bb = new BoundingBox();
 	public Tile(PApplet p) {
 		super(p);
 		// TODO Auto-generated constructor stub
@@ -17,12 +18,15 @@ public class Tile extends Sprite {
 		this.size.y = h;
 		this.strokeColour = parent.color(255, 255, 255);
 		this.fillColour = parent.color(0, 0, 0);
+		bb.fromSize(size);
 		// TODO Auto-generated constructor stub
+	}
+	public void start() {
+		
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 
 	}
 	
@@ -35,5 +39,6 @@ public class Tile extends Sprite {
 		parent.rect(0, 0, this.size.x, this.size.y);
 		parent.popMatrix();
 }
+
 
 }
