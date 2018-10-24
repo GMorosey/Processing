@@ -16,6 +16,7 @@ public class Launcher extends BaseLauncher{
         Player player = new Player(parent, parent.width/2,parent.height/2,60, 60);
         player.start();
         this.gameManager.addObject(player);
+        this.gameManager.addBoundingBox(player);
    
         int platforms = 8;
         for(int i = 0; i < platforms; i++){

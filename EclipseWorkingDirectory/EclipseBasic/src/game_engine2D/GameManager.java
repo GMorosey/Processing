@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class GameManager {
     public PApplet parent; // The parent PApplet that we will render ourselves onto
     public int background = 0;
+    boolean collided;
     public GameManager(PApplet p){
         parent = p;
         gameObjects = new ArrayList<GameObject>();
@@ -36,6 +37,7 @@ public class GameManager {
         }
     }
     public void UpdateAll() {
+
     	parent.background(background);
         for(int i = 0; i < gameObjects.size(); i++){
         	
@@ -44,13 +46,11 @@ public class GameManager {
             g.render();
         }
         
-        for(int i = 0; i < boundingBoxes.size(); i++ ) {
-        	BoundingBox bb = boundingBoxes.get(i);
-        	for(int j = 0; j < gameObjects.size(); j++) {
-        		GameObject g = gameObjects.get(j);
-        		
-        	}
-        }
+    	for(GameObject go : gameObjects) {
+    		 go.collided = go.colCheck(go,boundingBoxes);
+    		 System.out.println(go.name + " " + go.collided);
+      		
+      	}
     }
-
 }
+

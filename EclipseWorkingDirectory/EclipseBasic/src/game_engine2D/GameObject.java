@@ -6,6 +6,9 @@ import processing.core.PVector;
 
 public abstract class GameObject extends ProcessingEntity {
 	public ArrayList<GameComponent> components;
+	public BoxCollider2D boxCol;
+	public BoundingBox bb;
+	public boolean collided;
 	public GameObject(PApplet p) {
 		super(p);
 		this.components = new ArrayList<GameComponent>();
@@ -19,5 +22,17 @@ public abstract class GameObject extends ProcessingEntity {
 	public abstract void render();
 	public String ToString() {
 		return this.name;
+	}
+	public boolean colCheck(GameObject g, ArrayList<BoundingBox> bbs) {
+		BoundingBox bbB = g.transform.boundingBox;
+		for(BoundingBox bbA : bbs) {
+			if(bbB.left < bbA.right && bbB.right > bbA.left) {
+			if(bbA.top > bbB.bottom) {
+				this.transform.position.y = bbB.top - this.transform.boundingBox.bottom;
+				return true;
+			}
+}
+		}
+		return false;
 	}
 }

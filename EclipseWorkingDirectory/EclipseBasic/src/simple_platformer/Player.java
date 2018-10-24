@@ -18,13 +18,14 @@ import processing.core.PVector;
  */
 public class Player extends Sprite {
 	float speed = 3f;
-	float gravity = 0.95f;
+	float gravity = 0.095f;
 	public PVector velocity = new PVector();
 	private PVector size = new PVector(12,12);
 	public int stroke = parent.color(120,120,255);
 	public int fill = parent.color(255);
-	public BoundingBox bb = new BoundingBox();
-	public BoxCollider2D boxCol = new BoxCollider2D(this);
+	public BoundingBox bb;
+	//public BoxCollider2D boxCol = new BoxCollider2D(this);
+	String name = "player";
 	
 	public Physics2D physics;
 	/**
@@ -36,14 +37,17 @@ public class Player extends Sprite {
 	}
 	 public Player(PApplet p, float x, float y, float w, float h) {
 	        super(p);
+	        super.name = name;
 	        speed = 3.0f;
+	        bb = new BoundingBox();
+			 bb.fromSize(size);
 	    }
 	 public void start() {
 		 this.transform.position.x = parent.width / 2;
 		 this.transform.position.y = parent.height / 2;
 		 physics = new Physics2D(this);
 		 physics.start();
-		 bb.fromSize(size);
+		
 		 
 	 }
 	/* (non-Javadoc)
@@ -54,7 +58,9 @@ public class Player extends Sprite {
 		physics.update();
 		velocity.y += gravity;
 		this.transform.position.y += velocity.y;
-		boxCol.colCheck(other, _bb)
+		if(this.transform.collided)this.velocity.y = 0;
+		
+
 	}
 	@Override
 	public void render(){

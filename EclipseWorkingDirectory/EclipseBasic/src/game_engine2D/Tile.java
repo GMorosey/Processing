@@ -6,7 +6,8 @@ public class Tile extends Sprite {
 	
 	int strokeColour;
 	int fillColour;
-	public BoundingBox bb = new BoundingBox();
+	public BoundingBox bb;
+	String name = "tile";
 	public Tile(PApplet p) {
 		super(p);
 		// TODO Auto-generated constructor stub
@@ -18,7 +19,9 @@ public class Tile extends Sprite {
 		this.size.y = h;
 		this.strokeColour = parent.color(255, 255, 255);
 		this.fillColour = parent.color(0, 0, 0);
+		bb = new BoundingBox();
 		bb.fromSize(size);
+		super.name = name;
 		// TODO Auto-generated constructor stub
 	}
 	public void start() {

@@ -1,5 +1,7 @@
 package game_engine2D;
 
+import java.util.ArrayList;
+
 import processing.core.PVector;
 
 public class BoundingBox {
@@ -8,6 +10,7 @@ public class BoundingBox {
 	public float right;
 	public float top;
 	public float bottom;
+	String name;
 	public BoundingBox()
 	{
 		
@@ -26,5 +29,6 @@ public class BoundingBox {
 		left = -size.x/2;
 		
 	}
+	
 
 }
