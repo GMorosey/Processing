@@ -14,6 +14,7 @@ public class Launcher extends BaseLauncher{
 	public void StartGame(){
 		super.StartGame();
         Player player = new Player(parent, parent.width/2,parent.height/2,60, 60);
+        player.transform.boundingBox.fromSize(player.transform.size);
         player.start();
         this.gameManager.addPlayer(player);
         //this.gameManager.addBoundingBox(player);
@@ -25,6 +26,7 @@ public class Launcher extends BaseLauncher{
             platform.transform.boundingBox.fromSize(platform.transform.size);
             this.gameManager.addObject(platform);
             this.gameManager.addBoundingBox(platform);
+            //platform.transform.boundingBox.fromSize(platform.transform.size);
         }
     }
 	  public void UpdateAll(){

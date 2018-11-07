@@ -9,6 +9,7 @@ import game_engine2D.Physics2D;
 import game_engine2D.Sprite;
 import game_engine2D.GameManager;
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PVector;
 
 
@@ -37,11 +38,12 @@ public class Player extends Sprite {
 	        super(p);
 	        super.name = name;
 	        speed = 3.0f;
+		 this.transform.size = new PVector(12,12);
 	        bb = new BoundingBox();
 			 bb.fromSize(this.transform.size);
 	    }
 	 public void start() {
-		 this.transform.size = new PVector(12,12);
+
 		 this.transform.position.x = parent.width / 2;
 		 this.transform.position.y = parent.height / 2;
 		 physics = new Physics2D(this);
@@ -58,14 +60,22 @@ public class Player extends Sprite {
 		this.transform.velocity.y += gravity;
 		this.transform.position.y += this.transform.velocity.y;
 		if(this.collided) this.transform.velocity.y = 0;
-		
+
 
 	}
 	@Override
 	public void render(){
 		parent.fill(this.fill);
 		parent.stroke(this.stroke);
-		parent.rect(this.transform.position.x, this.transform.position.y, this.transform.size.x, this.transform.size.y);
+		parent.rectMode(PConstants.CENTER);
+		//parent.rect(this.transform.position.x, this.transform.position.y, this.transform.size.x, this.transform.size.y);
+		parent.fill(0,255,0);
+		parent.rectMode(PConstants.CORNERS);
+
+		System.out.println(this.transform.boundingBox.top + " " +this.transform.boundingBox.bottom);
+		parent.rect(this.transform.position.x + this.transform.boundingBox.left,this.transform.position.y + this.transform.boundingBox.bottom,this.transform.position.x +this.transform.boundingBox.right,this.transform.position.y + this.transform.boundingBox.top);
+
+		//parent.ellipse(this.transform.boundingBox.top,this.transform.boundingBox.top,3,3);
 
 	}
 	

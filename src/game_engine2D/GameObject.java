@@ -28,8 +28,8 @@ public abstract class GameObject extends ProcessingEntity {
 		for(BoundingBox bbA : bbs) {
 
 			if(gBB.left < bbA.right && gBB.right > bbA.left) {
-				if(gBB.bottom > bbA.top  /*gBB.top < bbA.bottom*/){
-					g.transform.position.y = bbA.top;
+				if(gBB.top > bbA.bottom  /*gBB.top < bbA.bottom*/){
+					g.transform.position.y = bbA.bottom - (g.transform.size.y/2 + bbA.objectSize.y/2);
 					System.out.println(g.transform.position.y);
 					System.out.println(bbA.top);
 					return true;

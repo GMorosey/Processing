@@ -20,7 +20,7 @@ public class Transform {
 	public PVector scale = new PVector(0,0);
 	public PVector size = new PVector(0,0);
 	public PVector velocity = new PVector(0,0);
-	public BoundingBox boundingBox = new BoundingBox();
+	public BoundingBox boundingBox = new BoundingBox(-1,1,-1,1);
 	public BoundingBox _BoundingBox() {
 		BoundingBox bb = new BoundingBox();
 		bb.left = this.position.x + boundingBox.left;
