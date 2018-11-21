@@ -45,6 +45,7 @@ public class Tile extends Sprite {
 		parent.fill(0,255,0);
 		parent.rectMode(PConstants.CORNERS);
 		parent.rect(this.transform.position.x + this.transform.boundingBox.left,this.transform.position.y + this.transform.boundingBox.top,this.transform.position.x +this.transform.boundingBox.right,this.transform.position.y + this.transform.boundingBox.bottom);
+		System.out.println(this.transform.boundingBox.left);
 		//parent.ellipse(this.transform.position.x,this.transform.position.y,3,3);
 		parent.popMatrix();
 }

@@ -56,10 +56,29 @@ public class GameManager {
         }
         
     	for(GameObject go : players) {
-    		 go.collided = go.colCheck(go,boundingBoxes);
-    		 System.out.println(go.name + " " + go.collided);
+    		 if(go.physics.colCheck(go,boundingBoxes) && go.physics.CollideInfo == "TOP"){
+                 go.physics.velocity.y =0;
+             }else {
+                 go.physics.applyGravity();
+             }
+
+             go.physics.updatePos(go);
+    		 //System.out.println(go.name + " " + go.collided);
       		
       	}
+    }
+
+    public void keyPressed(char key, int keyCode){
+        for(int i = 0; i < players.size(); i++){
+            GameObject g = players.get(i);
+            g.keyPressed(key, keyCode);
+        }
+    }
+    public void keyReleased(char key, int keyCode) {
+        for (int i = 0; i < players.size(); i++) {
+            GameObject g = players.get(i);
+            g.keyReleased(key, keyCode);
+        }
     }
 }
 

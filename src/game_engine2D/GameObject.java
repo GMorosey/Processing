@@ -9,6 +9,8 @@ public abstract class GameObject extends ProcessingEntity {
 	public BoxCollider2D boxCol;
 	public BoundingBox bb;
 	public boolean collided;
+	public String CollideInfo = "NONE";
+	public Physics2D physics;
 	public GameObject(PApplet p) {
 		super(p);
 		this.components = new ArrayList<GameComponent>();
@@ -23,19 +25,8 @@ public abstract class GameObject extends ProcessingEntity {
 	public String ToString() {
 		return this.name;
 	}
-	public boolean colCheck(GameObject g, ArrayList<BoundingBox> bbs) {
-		BoundingBox gBB = g.transform._BoundingBox();
-		for(BoundingBox bbA : bbs) {
 
-			if(gBB.left < bbA.right && gBB.right > bbA.left) {
-				if(gBB.top > bbA.bottom  /*gBB.top < bbA.bottom*/){
-					g.transform.position.y = bbA.bottom - (g.transform.size.y/2 + bbA.objectSize.y/2);
-					System.out.println(g.transform.position.y);
-					System.out.println(bbA.top);
-					return true;
-					}
-}
-		}
-		return false;
-	}
+
+	public void keyPressed(char key, int keyCode){}
+	public void keyReleased(char key, int keyCode){}
 }

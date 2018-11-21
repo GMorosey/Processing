@@ -19,7 +19,7 @@ public class Launcher extends BaseLauncher{
         this.gameManager.addPlayer(player);
         //this.gameManager.addBoundingBox(player);
    
-        int platforms = 8;
+        int platforms = 18;
         for(int i = 0; i < platforms; i++){
             Tile platform = new Tile(parent, 50 + i * 55, parent.height-50,50, 20);
             platform.start();

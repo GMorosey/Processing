@@ -23,10 +23,7 @@ public class Player extends Sprite {
 	public int stroke = parent.color(120,120,255);
 	public int fill = parent.color(255);
 	public BoundingBox bb;
-	//public BoxCollider2D boxCol = new BoxCollider2D(this);
 	String name = "player";
-	
-	public Physics2D physics;
 	/**
 	 * @param p
 	 */
@@ -46,8 +43,7 @@ public class Player extends Sprite {
 
 		 this.transform.position.x = parent.width / 2;
 		 this.transform.position.y = parent.height / 2;
-		 physics = new Physics2D(this);
-		 physics.start();
+		 physics = new Physics2D();
 		
 		 
 	 }
@@ -56,10 +52,7 @@ public class Player extends Sprite {
 	 */
 	@Override
 	public void update() {
-		physics.update();
-		this.transform.velocity.y += gravity;
-		this.transform.position.y += this.transform.velocity.y;
-		if(this.collided) this.transform.velocity.y = 0;
+
 
 
 	}
@@ -72,11 +65,29 @@ public class Player extends Sprite {
 		parent.fill(0,255,0);
 		parent.rectMode(PConstants.CORNERS);
 
-		System.out.println(this.transform.boundingBox.top + " " +this.transform.boundingBox.bottom);
+		//System.out.println(this.transform.boundingBox.top + " " +this.transform.boundingBox.bottom);
 		parent.rect(this.transform.position.x + this.transform.boundingBox.left,this.transform.position.y + this.transform.boundingBox.bottom,this.transform.position.x +this.transform.boundingBox.right,this.transform.position.y + this.transform.boundingBox.top);
 
 		//parent.ellipse(this.transform.boundingBox.top,this.transform.boundingBox.top,3,3);
 
 	}
-	
+	public void keyPressed(char key, int keyCode){
+		if(keyCode == PApplet.UP){
+			this.physics.jump();
+			//System.out.println("UP");
+		}
+		if(keyCode == PApplet.LEFT){
+			//System.out.println("LEFT");
+			physics.applyForce(-1);
+		}
+		if(keyCode == PApplet.RIGHT){
+			//System.out.println("RIGHT");
+			physics.applyForce(1);
+		}
+	}
+	public void keyReleased(char key, int keyCode){
+		if((keyCode == PApplet.LEFT || keyCode == PApplet.RIGHT)&& this.physics.IsGrounded) {
+			this.physics.keyUp();
+		}
+		}
 }
