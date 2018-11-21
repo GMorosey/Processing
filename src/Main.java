@@ -20,4 +20,5 @@ public class Main extends PApplet {
 
 	public void keyPressed(){launcher.keyPressed(key,keyCode);}
 	public void keyReleased(){launcher.keyReleased(key,keyCode);}
+	public void mousePressed(){launcher.mousePressed(mouseX,mouseY);}
 }

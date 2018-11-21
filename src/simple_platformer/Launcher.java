@@ -18,6 +18,8 @@ public class Launcher extends BaseLauncher{
         player.start();
         this.gameManager.addPlayer(player);
         //this.gameManager.addBoundingBox(player);
+        Camera2D camera = new Camera2D(parent,player);
+        this.gameManager.addObject(camera);
    
         int platforms = 18;
         for(int i = 0; i < platforms; i++){

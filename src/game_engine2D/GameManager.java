@@ -11,12 +11,18 @@ public class GameManager {
         gameObjects = new ArrayList<GameObject>();
         boundingBoxes = new ArrayList<BoundingBox>();
         players = new ArrayList<GameObject>();
+        ScreenCentre.x = parent.width/2;
+        ScreenCentre.y = parent.height/2;
+
+
     }
 
     private ArrayList<GameObject> gameObjects;
     private ArrayList<GameObject> players;
     private ArrayList<BoundingBox> boundingBoxes;
 
+    public static PVector ScreenCentre = new PVector(0,0);
+    public static PVector offset = new PVector(0,0);
 
     public void addObject(GameObject g){
         gameObjects.add(g);
@@ -33,6 +39,8 @@ public class GameManager {
     	boundingBoxes.remove(b.transform._BoundingBox());
     }
     public void StartAll() {
+
+        //ScreenCentre =
     	
         for(int i = 0; i < gameObjects.size(); i++){
             GameObject g = gameObjects.get(i);
@@ -40,6 +48,9 @@ public class GameManager {
         }
     }
     public void UpdateAll() {
+        System.out.print(offset);
+        parent.pushMatrix();
+        parent.translate(offset.x,offset.y);
 
     	parent.background(background);
         for(int i = 0; i < gameObjects.size(); i++){
@@ -66,6 +77,15 @@ public class GameManager {
     		 //System.out.println(go.name + " " + go.collided);
       		
       	}
+      	parent.popMatrix();
+    }
+
+    public void createTile(float x, float y){
+        Tile platform = new Tile(parent, Math.round(x), Math.round(y),50, 20);
+        platform.start();
+        platform.transform.boundingBox.fromSize(platform.transform.size);
+        addObject(platform);
+        addBoundingBox(platform);
     }
 
     public void keyPressed(char key, int keyCode){
@@ -73,6 +93,10 @@ public class GameManager {
             GameObject g = players.get(i);
             g.keyPressed(key, keyCode);
         }
+    }
+    public void mousePressed(float mouseX,float mouseY) {
+
+        createTile(mouseX, mouseY);
     }
     public void keyReleased(char key, int keyCode) {
         for (int i = 0; i < players.size(); i++) {

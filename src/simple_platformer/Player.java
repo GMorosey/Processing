@@ -3,11 +3,7 @@
  */
 package simple_platformer;
 
-import game_engine2D.BoundingBox;
-import game_engine2D.BoxCollider2D;
-import game_engine2D.Physics2D;
-import game_engine2D.Sprite;
-import game_engine2D.GameManager;
+import game_engine2D.*;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PVector;
@@ -44,6 +40,7 @@ public class Player extends Sprite {
 		 this.transform.position.x = parent.width / 2;
 		 this.transform.position.y = parent.height / 2;
 		 physics = new Physics2D();
+		 currentState = objectStates.idle;
 		
 		 
 	 }
@@ -52,7 +49,8 @@ public class Player extends Sprite {
 	 */
 	@Override
 	public void update() {
-
+		if(this.physics.velocity.x ==0) currentState = objectStates.idle;
+		//System.out.println(currentState);
 
 
 	}
@@ -74,20 +72,25 @@ public class Player extends Sprite {
 	public void keyPressed(char key, int keyCode){
 		if(keyCode == PApplet.UP){
 			this.physics.jump();
+			currentState = objectStates.jumping;
 			//System.out.println("UP");
 		}
 		if(keyCode == PApplet.LEFT){
 			//System.out.println("LEFT");
 			physics.applyForce(-1);
+			if(this.physics.IsGrounded)currentState = objectStates.moving;
 		}
 		if(keyCode == PApplet.RIGHT){
 			//System.out.println("RIGHT");
 			physics.applyForce(1);
+			if(this.physics.IsGrounded)currentState = objectStates.moving;
 		}
 	}
+
 	public void keyReleased(char key, int keyCode){
 		if((keyCode == PApplet.LEFT || keyCode == PApplet.RIGHT)&& this.physics.IsGrounded) {
 			this.physics.keyUp();
 		}
 		}
+
 }

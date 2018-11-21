@@ -16,6 +16,13 @@ public abstract class GameObject extends ProcessingEntity {
 		this.components = new ArrayList<GameComponent>();
 	}
 
+	public enum objectStates{
+		moving,
+		jumping,
+		idle
+	}
+	public objectStates currentState;
+
 	public String name;
 	public String tag;
 	public Transform transform = new Transform();
